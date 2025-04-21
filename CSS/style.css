@@ -179,8 +179,8 @@ a {
   }
 
   .image-button {
-    width: 40px; /* 更小的按钮 */
-    height: 40px; /* 更小的按钮 */
+    width: 50px; /* 更小的按钮 */
+    height: 25px; /* 更小的按钮 */
   }
 
   .floating-buttons a {
