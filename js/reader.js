@@ -1,8 +1,10 @@
+// 获取 URL 查询参数
 function getQueryParam(name) {
   const params = new URLSearchParams(window.location.search);
   return params.get(name);
 }
 
+// HTML 转义，防止 XSS
 function escapeHTML(text) {
   return text.replace(/[&<>"']/g, function (match) {
     const escapeMap = {
@@ -16,7 +18,8 @@ function escapeHTML(text) {
   });
 }
 
-let currentChapter = parseInt(getQueryParam('chapter') || 1); // 默认从第1章开始
+// 默认从第1章开始
+let currentChapter = parseInt(getQueryParam('chapter') || 1);
 let chapterTitles = [];
 
 // 加载章节标题文件
@@ -57,6 +60,10 @@ function loadChapter(chapterNumber) {
 
       // 将解析后的文本加载到页面中
       document.getElementById('content').innerHTML = html;
+
+      // 重置滚动容器的滚动位置到顶部
+      const contentContainer = document.getElementById('content-container');
+      contentContainer.scrollTop = 0; // 重置滚动位置
     })
     .catch(() => {
       document.getElementById('content').innerText = '章节加载失败或不存在';
@@ -78,5 +85,5 @@ document.getElementById('prev-btn').addEventListener('click', () => {
   }
 });
 
-// 初始化加载章节标题文件
+// 确保加载章节标题文件
 loadChapterTitles();
