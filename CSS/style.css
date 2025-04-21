@@ -84,10 +84,10 @@ a {
 
 /* 按钮本身 */
 .floating-buttons {
-  position: absolute;
   bottom: 100px;
   right: 190px;
   display: flex;
+  margin-top: 460px;
   flex-direction: column;
   gap: 8px;
 }
