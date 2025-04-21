@@ -8,6 +8,7 @@ body {
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
+  box-sizing: border-box; /* 确保所有元素包括padding和border都能正确计算 */
 }
 
 /* 内容容器居中 */
@@ -23,6 +24,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 90vh;
+  box-sizing: border-box; /* 确保padding不会导致宽度溢出 */
 }
 
 /* 标题 */
@@ -54,6 +56,7 @@ h1 {
   justify-content: space-between;
 }
 
+/* 按钮样式 */
 button {
   background-color: #0077cc;
   color: white;
@@ -77,50 +80,110 @@ a {
   display: block;
   text-align: center;
 }
+
+/* 控制按钮不影响布局，并腾出空间 */
 #content-container {
-  position: relative; /* 设置父级为相对定位 */
+  position: relative;
   padding-bottom: 80px; /* 给按钮腾出空间 */
 }
 
-/* 按钮本身 */
+/* 按钮容器样式 */
 .floating-buttons {
-  bottom: 100px;
-  right: 190px;
+  bottom: 20px;  /* 调整为距底部20px */
+  right: 200px;   /* 调整为距右边20px */
+  position: fixed; /* 固定位置 */
   display: flex;
-  margin-top: 460px;
   flex-direction: column;
   gap: 8px;
 }
 
+/* 按钮样式 */
 .floating-buttons a {
   text-decoration: none;
   color: white;
-  padding: 4px 4px;
-  border-radius: 20px;
-  font-size: 12px;
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 16px;
   transition: background-color 0.2s;
+  display: block;
 }
 
+/* 图片按钮容器 */
 .image-button {
   display: inline-block;
-  width: 80px;
-  height: 50px;
-  overflow: hidden;            /* 关键点：裁剪超出部分 */
-  border-radius: 10px;
+  width: 100px;  /* 调整按钮尺寸 */
+  height: 50px; /* 调整按钮尺寸 */
+  overflow: hidden; /* 裁剪超出部分 */
+  border-radius: 50%; /* 圆形按钮 */
   transition: transform 0.3s ease;
 }
 
+/* 按钮中的图片 */
 .image-button img {
   width: 100%;
-  height: 90%;
-  object-fit: cover;           /* 保证图片充满按钮，但不拉伸，超出裁剪 */
+  height: 100%;
+  object-fit: cover; /* 保证图片充满按钮且不变形 */
   transition: transform 0.3s ease;
 }
 
+/* 鼠标悬停时的按钮和图片放大效果 */
 .image-button:hover {
-  transform: scale(1.1);       /* 按钮整体放大 */
+  transform: scale(1.1);  /* 按钮放大 */
 }
 
 .image-button:hover img {
-  transform: scale(1.1);       /* 图片同时放大 */
+  transform: scale(1.1);  /* 图片放大 */
+}
+
+/* 响应式布局 - 手机端调整 */
+@media (max-width: 768px) {
+  .container {
+    width: 90%; /* 平板时容器宽度稍微增加 */
+    padding: 15px;
+  }
+
+  .floating-buttons {
+    right: 10px; /* 浮动按钮更靠近右边 */
+    bottom: 10px; /* 按钮靠近底部 */
+  }
+
+  .image-button {
+    width: 45px; /* 按钮大小稍微缩小 */
+    height: 45px; /* 按钮大小稍微缩小 */
+  }
+
+  .floating-buttons a {
+    padding: 6px; /* 按钮内边距缩小 */
+  }
+
+  button {
+    font-size: 14px; /* 在平板设备上按钮字体稍微小一些 */
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 95%; /* 手机端容器宽度更大 */
+    padding: 10px;
+  }
+
+  .floating-buttons {
+    right: 5px; /* 浮动按钮更靠近右边 */
+    bottom: 5px; /* 按钮靠近底部 */
+  }
+
+  .image-button {
+    width: 40px; /* 更小的按钮 */
+    height: 40px; /* 更小的按钮 */
+  }
+
+  .floating-buttons a {
+    padding: 4px; /* 更小的按钮内边距 */
+  }
+
+  button {
+    font-size: 12px; /* 手机端按钮字体更小 */
+    padding: 6px 12px;
+  }
 }
