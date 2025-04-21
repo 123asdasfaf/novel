@@ -1,0 +1,126 @@
+/* 页面整体布局 */
+body {
+  font-family: "微软雅黑", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* 内容容器居中 */
+.container {
+  width: 80%;
+  max-width: 900px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90vh;
+}
+
+/* 标题 */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 内容区 */
+#content-container {
+  overflow-y: auto;
+  flex: 1;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* 段落设置，增加空行间距 */
+#content p {
+  margin-bottom: 1.5em; /* 增加每段的下边距，确保每段之间有空白 */
+  line-height: 1.8;
+  word-wrap: break-word;  /* 防止长单词超过宽度 */
+}
+
+/* 翻页按钮 */
+#pagination {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005fa3;
+}
+
+/* 目录返回链接 */
+a {
+  color: #0077cc;
+  text-decoration: none;
+  font-size: 16px;
+  margin-top: 20px;
+  display: block;
+  text-align: center;
+}
+#content-container {
+  position: relative; /* 设置父级为相对定位 */
+  padding-bottom: 80px; /* 给按钮腾出空间 */
+}
+
+/* 按钮本身 */
+.floating-buttons {
+  position: absolute;
+  bottom: 100px;
+  right: 190px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.floating-buttons a {
+  text-decoration: none;
+  color: white;
+  padding: 4px 4px;
+  border-radius: 20px;
+  font-size: 12px;
+  transition: background-color 0.2s;
+}
+
+.image-button {
+  display: inline-block;
+  width: 80px;
+  height: 50px;
+  overflow: hidden;            /* 关键点：裁剪超出部分 */
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.image-button img {
+  width: 100%;
+  height: 90%;
+  object-fit: cover;           /* 保证图片充满按钮，但不拉伸，超出裁剪 */
+  transition: transform 0.3s ease;
+}
+
+.image-button:hover {
+  transform: scale(1.1);       /* 按钮整体放大 */
+}
+
+.image-button:hover img {
+  transform: scale(1.1);       /* 图片同时放大 */
+}
