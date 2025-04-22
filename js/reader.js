@@ -87,3 +87,57 @@ document.getElementById('prev-btn').addEventListener('click', () => {
 
 // 确保加载章节标题文件
 loadChapterTitles();
+const PAGE_SIZE = 15;
+let currentPage = 1;
+let chapters = [];
+
+function renderChapters(page) {
+  const toc = document.getElementById('toc');
+  toc.innerHTML = '';
+  const start = (page - 1) * PAGE_SIZE;
+  const end = start + PAGE_SIZE;
+  const visibleChapters = chapters.slice(start, end);
+
+  visibleChapters.forEach((title, i) => {
+    const li = document.createElement('li');
+    const chapterNum = start + i + 1;
+    li.innerHTML = `<a href="reader.html?chapter=${chapterNum}">第${chapterNum}章：${title}</a>`;
+    toc.appendChild(li);
+  });
+
+  document.getElementById('pageInput').value = page;
+  document.getElementById('totalPages').textContent = `/ ${Math.ceil(chapters.length / PAGE_SIZE)}`;
+}
+
+function goToPage(page) {
+  const totalPages = Math.ceil(chapters.length / PAGE_SIZE);
+  if (page < 1 || page > totalPages) return;
+  currentPage = page;
+  renderChapters(currentPage);
+}
+
+document.getElementById('prevPage').addEventListener('click', () => {
+  if (currentPage > 1) goToPage(currentPage - 1);
+});
+
+document.getElementById('nextPage').addEventListener('click', () => {
+  const totalPages = Math.ceil(chapters.length / PAGE_SIZE);
+  if (currentPage < totalPages) goToPage(currentPage + 1);
+});
+
+document.getElementById('pageInput').addEventListener('change', (e) => {
+  const targetPage = parseInt(e.target.value);
+  if (!isNaN(targetPage)) goToPage(targetPage);
+});
+
+// 初始化加载章节
+fetch('chapters/title_name.txt')
+  .then(res => res.text())
+  .then(text => {
+    chapters = text.trim().split('\n').map(line => line.trim());
+    goToPage(1);
+  })
+  .catch(err => {
+    console.error('读取章节失败', err);
+    document.getElementById('toc').innerHTML = '<li>⚠️ 加载章节失败</li>';
+  });

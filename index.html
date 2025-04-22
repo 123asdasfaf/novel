@@ -3,30 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <title>小说阅读器</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap">
   <link rel="stylesheet" href="CSS/index.css">
 </head>
 <body>
-  <h1 class = "title">《张烁的奇妙冒险》</h1>
+  <h1 class="title">《张烁的奇妙冒险》</h1>
+  <!-- 登录弹窗 -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <h2>请输入账号密码</h2>
+      <input type="text" id="username" placeholder="用户名">
+      <input type="password" id="password" placeholder="密码">
+      <button id="submitLogin">登录</button>
+      <p id="loginMsg"></p>
+    </div>
+  </div>
   <ul id="toc">
-    <li><a href="reader.html?chapter=1">第一章：序章</a></li>
-    <li><a href="reader.html?chapter=2">第二章：陨落之星</a></li>
-    <li><a href="reader.html?chapter=3">第三章：重返凡间</a></li>
-    <li><a href="reader.html?chapter=4">第四章：等下取名</a></li>
-    <li><a href="reader.html?chapter=5">第五章：等下取名</a></li>
-    <li><a href="reader.html?chapter=6">第六章：等下取名</a></li>
-    <li><a href="reader.html?chapter=7">第七章：等下取名</a></li>
-    <li><a href="reader.html?chapter=8">第八章：等下取名</a></li>
-    <li><a href="reader.html?chapter=9">第九章：等下取名</a></li>
-    <li><a href="reader.html?chapter=10">第十章：等下取名</a></li>
-    <li><a href="reader.html?chapter=11">第十一章：等下取名</a></li>
-    <li><a href="reader.html?chapter=12">第十二章：等下取名</a></li>
-    <li><a href="reader.html?chapter=13">第十三章：等下取名</a></li>
-    <li><a href="reader.html?chapter=14">第十四章：等下取名</a></li>
-    <li><a href="reader.html?chapter=15">第十五章：等下取名</a></li>
+  <!-- 章节将在 JS 中插入 -->
   </ul>
+  <div id="pagination">
+  <button id="prevPage">上一页</button>
+  <input type="number" id="pageInput" min="1" value="1" />
+  <span id="totalPages">/ 1</span>
+  <button id="nextPage">下一页</button>
+  </div>
 
   <div id="content">点击章节开始阅读...</div>
 
-  <script src="js/main.js"></script>
+  <script src="js/index.js"></script>
 </body>
 </html>
