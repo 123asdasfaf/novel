@@ -223,7 +223,7 @@ body {
 /* 手机端样式调整 */
 @media (max-width: 600px) {
   body {
-    padding-top: 80px !important; /* 强制应用 padding-top */
+    padding-top: 40px !important; /* 强制应用 padding-top */
   }
 
   .title {
@@ -232,7 +232,7 @@ body {
   }
   #openBtn{
     margin-left:120px ;
-    margin-top:20px;
+    margin-top:5px;
   }
 
   #toc {
