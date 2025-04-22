@@ -5,10 +5,11 @@ body {
   background: linear-gradient(to right, #f9f9f9, #e0eaff);
   color: #333;
   text-align: center;
+  padding-top: 50px; /* 桌面端的顶部间距 */
 }
 
 .title {
-  font-size: 2.8em;
+  font-size: 3em;
   margin: 40px 0 20px;
   color: #4a4aef;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
@@ -17,7 +18,7 @@ body {
 #toc {
   list-style: none;
   padding: 0;
-  max-width: 600px;
+  max-width: 550px;
   margin: 0 auto 30px;
 }
 
@@ -48,15 +49,33 @@ body {
   color: #666;
 }
 
-@media (max-width: 600px) {
-  .title {
-    font-size: 2em;
-  }
-
-  #toc a {
-    padding: 10px 16px;
-  }
+#pagination {
+  margin-top: 20px;
+  text-align: center;
 }
+
+#pagination button {
+  padding: 6px 14px;
+  margin: 0 6px;
+  font-size: 1em;
+  border: none;
+  border-radius: 6px;
+  background-color: #4a4aef;
+  color: white;
+  cursor: pointer;
+}
+
+#pagination button:hover {
+  background-color: #3737cc;
+}
+
+#pagination input {
+  width: 50px;
+  padding: 4px;
+  font-size: 1em;
+  text-align: center;
+}
+
 #loginBtn {
   position: absolute;
   top: 20px;
@@ -79,8 +98,10 @@ body {
   display: none;
   position: fixed;
   z-index: 999;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -122,126 +143,51 @@ body {
   margin-top: 10px;
   font-size: 0.9em;
 }
-#pagination {
-  margin-top: 20px;
-  text-align: center;
-}
 
-#pagination button {
-  padding: 6px 14px;
-  margin: 0 6px;
-  font-size: 1em;
-  border: none;
-  border-radius: 6px;
-  background-color: #4a4aef;
-  color: white;
-  cursor: pointer;
-}
-
-#pagination button:hover {
-  background-color: #3737cc;
-}
-
-#pagination input {
-  width: 50px;
-  padding: 4px;
-  font-size: 1em;
-  text-align: center;
-}
+/* 手机端样式调整 */
 @media (max-width: 600px) {
   body {
-    padding: 10px;
-    font-size: 1rem; /* 适当增大基础字体大小 */
+    padding-top: 80px !important; /* 强制应用 padding-top */
   }
 
   .title {
-    font-size: 2em; /* 调整标题大小 */
-    margin: 20px 0 15px; /* 增加标题上下间距 */
+    font-size: 2em !important; /* 强制调整标题字体大小 */
+    margin: 20px 0;
   }
 
   #toc {
-    max-width: 100%;
-    padding: 0;
+    max-width: 80% !important; /* 强制调整目录宽度 */
     margin: 0 auto;
   }
 
-  #toc li {
-    margin: 12px 0; /* 增加章节项之间的间距 */
-  }
-
   #toc a {
-    font-size: 1.1em; /* 增加章节链接的字体大小 */
-    padding: 12px 16px; /* 调整按钮内边距 */
-    display: block;
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    transition: all 0.3s ease;
-  }
-
-  #toc a:hover {
-    background-color: #dbeafe;
-    color: #1e3a8a;
-    transform: scale(1.05);
+    padding: 10px 16px !important; /* 强制调整链接内边距 */
   }
 
   #content {
-    font-size: 1.1em;
-    color: #666;
-    margin: 20px auto;
-    padding: 0 10px;
+    font-size: 1em !important; /* 强制调整内容字体 */
   }
 
   #pagination {
-    margin-top: 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  #pagination button {
-    padding: 8px 18px;
-    font-size: 1.1em;
-    border-radius: 6px;
-    background-color: #4a4aef;
-    color: white;
-    cursor: pointer;
-  }
-
-  #pagination button:hover {
-    background-color: #3737cc;
-  }
-
-  #pagination input {
-    width: 60px;
-    padding: 5px;
-    font-size: 1.1em;
-    text-align: center;
+    font-size: 0.9em !important;
   }
 
   #loginBtn {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 10px 20px;
-    font-size: 1em;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    padding: 8px 16px;
+    background-color: #4a4aef;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 1000;
   }
 
   .modal-content {
     width: 80%;
-    margin: 100px auto;
-    padding: 20px;
-  }
-
-  .modal-content input {
-    font-size: 1em;
-    padding: 12px;
-  }
-
-  .modal-content button {
-    font-size: 1.1em;
-    padding: 10px 20px;
+    margin-top: 20%;
   }
 }

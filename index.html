@@ -2,30 +2,19 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 必须存在 -->
   <title>小说阅读器</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap">
   <link rel="stylesheet" href="CSS/index.css">
 </head>
 <body>
   <h1 class="title">《张烁的奇妙冒险》</h1>
-  <!-- 登录弹窗 -->
-  <div id="loginModal" class="modal">
-    <div class="modal-content">
-      <h2>请输入账号密码</h2>
-      <input type="text" id="username" placeholder="用户名">
-      <input type="password" id="password" placeholder="密码">
-      <button id="submitLogin">登录</button>
-      <p id="loginMsg"></p>
-    </div>
-  </div>
-  <ul id="toc">
-  <!-- 章节将在 JS 中插入 -->
-  </ul>
+  <ul id="toc"></ul>
   <div id="pagination">
-  <button id="prevPage">上一页</button>
-  <input type="number" id="pageInput" min="1" value="1" />
-  <span id="totalPages">/ 1</span>
-  <button id="nextPage">下一页</button>
+    <button id="prevPage">上一页</button>
+    <input type="number" id="pageInput" min="1" value="1" />
+    <span id="totalPages">/ 1</span>
+    <button id="nextPage">下一页</button>
   </div>
 
   <div id="content">点击章节开始阅读...</div>
