@@ -1,4 +1,32 @@
 // 获取 URL 查询参数
+function getContent(currentChapter) {
+  const fileUrl = `chapters/${currentChapter}.txt`; // 假设章节文件是 `.txt` 格式
+  // 使用 fetch 获取文件
+  fetch(fileUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('文件下载失败');
+      }
+      return response.blob(); // 将响应转为 Blob
+    })
+    .then(blob => {
+      // 创建一个临时的 URL
+      const url = URL.createObjectURL(blob);
+
+      // 创建一个临时的 <a> 标签
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${currentChapter}.txt`; // 设置下载文件的名称为当前章节名，文件扩展名为 .txt
+      // 模拟点击 <a> 标签进行下载
+      a.click();
+      // 释放 URL 对象
+      URL.revokeObjectURL(url);
+    })
+    .catch(error => {
+      console.error('下载文件时出错:', error);
+    });
+}
+
 function getQueryParam(name) {
   const params = new URLSearchParams(window.location.search);
   return params.get(name);
@@ -36,7 +64,6 @@ function loadChapterTitles() {
       console.error('章节标题加载失败');
     });
 }
-
 // 加载章节内容
 function loadChapter(chapterNumber) {
   const file = `chapters/${chapterNumber}.txt`;
@@ -84,60 +111,9 @@ document.getElementById('prev-btn').addEventListener('click', () => {
     window.history.pushState({}, '', `reader.html?chapter=${currentChapter}`);
   }
 });
+document.getElementById('downloadFileBtn').addEventListener('click', function() {
+  getContent(currentChapter)
+});
 
 // 确保加载章节标题文件
 loadChapterTitles();
-const PAGE_SIZE = 15;
-let currentPage = 1;
-let chapters = [];
-
-function renderChapters(page) {
-  const toc = document.getElementById('toc');
-  toc.innerHTML = '';
-  const start = (page - 1) * PAGE_SIZE;
-  const end = start + PAGE_SIZE;
-  const visibleChapters = chapters.slice(start, end);
-
-  visibleChapters.forEach((title, i) => {
-    const li = document.createElement('li');
-    const chapterNum = start + i + 1;
-    li.innerHTML = `<a href="reader.html?chapter=${chapterNum}">第${chapterNum}章：${title}</a>`;
-    toc.appendChild(li);
-  });
-
-  document.getElementById('pageInput').value = page;
-  document.getElementById('totalPages').textContent = `/ ${Math.ceil(chapters.length / PAGE_SIZE)}`;
-}
-
-function goToPage(page) {
-  const totalPages = Math.ceil(chapters.length / PAGE_SIZE);
-  if (page < 1 || page > totalPages) return;
-  currentPage = page;
-  renderChapters(currentPage);
-}
-
-document.getElementById('prevPage').addEventListener('click', () => {
-  if (currentPage > 1) goToPage(currentPage - 1);
-});
-
-document.getElementById('nextPage').addEventListener('click', () => {
-  const totalPages = Math.ceil(chapters.length / PAGE_SIZE);
-  if (currentPage < totalPages) goToPage(currentPage + 1);
-});
-
-document.getElementById('pageInput').addEventListener('change', (e) => {
-  const targetPage = parseInt(e.target.value);
-  if (!isNaN(targetPage)) goToPage(targetPage);
-});
-
-// 初始化加载章节
-fetch('chapters/title_name.txt')
-  .then(res => res.text())
-  .then(text => {
-    chapters = text.trim().split('\n').map(line => line.trim());
-    goToPage(1);
-  })
-  .catch(err => {
-    console.error('读取章节失败', err);
-    document.getElementById('toc').innerHTML = '<li>⚠️ 加载章节失败</li>';
-  });

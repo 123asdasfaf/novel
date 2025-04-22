@@ -10,7 +10,6 @@ body {
   min-height: 100vh;
   box-sizing: border-box; /* 确保所有元素包括padding和border都能正确计算 */
 }
-
 /* 内容容器居中 */
 .container {
   width: 80%;
