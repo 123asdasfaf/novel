@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>二维码</title>
+</head>
+<body style="margin:0; padding:20px; text-align:center; font-family:sans-serif; background:#fafafa;">
+
+  <h2>📱 扫码关注陛下</h2>
+    <img
+      src="pay_photo/20d0c2c8ceb9b510f56defa0419a702.jpg"
+      alt="二维码"
+      style="
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        display: block;
+        margin: 10px auto;
+    "
+    />
+  <script>
+    // 向父页面发送高度（iframe自适应）
+    window.onload = () => {
+      const height = document.body.scrollHeight;
+      window.parent.postMessage({ type: "setHeight", height }, "*");
+    };
+  </script>
+
+</body>
+</html>

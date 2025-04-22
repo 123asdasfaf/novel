@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'ZCOOL XiaoWei', serif;
+  font-family: 'ZCOOL XiaoWei', serif , sans-serif;
   background: linear-gradient(to right, #f9f9f9, #e0eaff);
   color: #333;
   text-align: center;
@@ -9,7 +9,7 @@ body {
 
 .title {
   font-size: 3em;
-  margin: 40px 0 20px;
+  margin-top: 10px;
   color: #4a4aef;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -142,7 +142,84 @@ body {
   margin-top: 10px;
   font-size: 0.9em;
 }
+#openBtn {
+    background: linear-gradient(145deg, #97aeea, #5173dc); /* 渐变背景 */
+    color: white; /* 文字颜色 */
+    font-size: 16px; /* 文字大小 */
+    margin-left:680px ;
+    margin-top:80px;
+    padding: 10px 20px; /* 内边距 */
+    border: none; /* 去掉边框 */
+    border-radius: 30px; /* 圆角 */
+    cursor: pointer; /* 鼠标指针 */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); /* 阴影 */
+    display: flex; /* 文字和图标对齐 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    transition: all 0.3s ease; /* 平滑过渡效果 */
+}
 
+#openBtn span {
+    margin-left: 8px; /* 文字与图标之间的间距 */
+}
+
+/* 鼠标悬停效果 */
+#openBtn:hover {
+    background: linear-gradient(145deg, #9a9be4, #5a82cd); /* 鼠标悬停背景色改变 */
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3); /* 阴影效果增强 */
+}
+
+.modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      animation: slideUp 0.3s;
+      max-height: 90vh;
+      width: 400px;
+    }
+
+    iframe {
+      width: 100%;
+      border: none;
+      display: block;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 20px;
+      color: #333;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
 /* 手机端样式调整 */
 @media (max-width: 600px) {
   body {
@@ -152,6 +229,9 @@ body {
   .title {
     font-size: 2em !important; /* 强制调整标题字体大小 */
     margin: 20px 0;
+  }
+  #openBtn{
+    margin-left:120px ;
   }
 
   #toc {

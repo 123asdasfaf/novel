@@ -53,3 +53,30 @@ fetch('chapters/title_name.txt')
     const toc = document.getElementById('toc');
     toc.innerHTML = '<li>⚠️ 无法加载章节，请检查文件路径</li>';
   });
+
+
+    const openBtn = document.getElementById('openBtn');
+    const modal = document.getElementById('popupModal');
+    const closeBtn = document.getElementById('closeBtn');
+    const iframe = document.getElementById('qrIframe');
+
+    openBtn.addEventListener('click', () => {
+      modal.classList.add('show');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('show');
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('show');
+      }
+    });
+
+    // 接收 iframe 高度（需同源）
+    window.addEventListener("message", (event) => {
+      if (event.data.type === "setHeight") {
+        iframe.style.height = event.data.height + "px";
+      }
+    });
