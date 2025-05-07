@@ -47,6 +47,10 @@ fetch('chapters/title_name.txt')
         renderPage(currentPage);
       }
     });
+    document.getElementById("openfly").addEventListener("click", function () {
+      // 跳转到游戏页面（game.html）
+      window.location.href = "fly.html";
+    });
   })
   .catch(error => {
     console.error('无法加载章节标题:', error);

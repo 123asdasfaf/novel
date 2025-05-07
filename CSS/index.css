@@ -158,7 +158,22 @@ body {
     justify-content: center; /* 水平居中 */
     transition: all 0.3s ease; /* 平滑过渡效果 */
 }
-
+#openfly{
+    background: linear-gradient(145deg, #97aeea, #5173dc); /* 渐变背景 */
+    color: white; /* 文字颜色 */
+    font-size: 16px; /* 文字大小 */
+    margin-top: 20px;
+    margin-left:700px ;
+    padding: 10px 20px; /* 内边距 */
+    border: none; /* 去掉边框 */
+    border-radius: 30px; /* 圆角 */
+    cursor: pointer; /* 鼠标指针 */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); /* 阴影 */
+    display: flex; /* 文字和图标对齐 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    transition: all 0.3s ease; /* 平滑过渡效果 */
+}
 #openBtn span {
     margin-left: 8px; /* 文字与图标之间的间距 */
 }
